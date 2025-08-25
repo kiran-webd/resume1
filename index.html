@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dynamic Resume</title>
+
+    <!-- Bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" />
+
+    <!-- Google Fonts -->
+    <link
+        href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Raleway:wght@400;500&display=swap"
+        rel="stylesheet" />
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+    <div class="container-fluid">
+        <div class="row g-0">
+            <!-- Sidebar -->
+            <aside class="col-md-3 col-12 sidebar d-flex flex-column align-items-center p-3">
+                <img src=".vscode/23.jpg" class="w-50 rounded-circle mb-3" alt="Profile Picture" />
+                <h1 class="name">KIRAN</h1>
+                <h2 class="role">Web Designer</h2>
+
+                <ul class="list-group mt-4 w-75">
+                    <li class="list-group-item active" data-page="home">Home</li>
+                    <li class="list-group-item" data-page="about">About</li>
+                    <li class="list-group-item" data-page="mail">Mail</li>
+                    <li class="list-group-item" data-page="contact">Contact</li>
+                </ul>
+            </aside>
+
+            <!-- Content Area -->
+            <main class="col-md-9 col-12 content-area d-flex align-items-center justify-content-center">
+                <div class="content text-center">
+                    <h3 id="heading">This is Home page</h3>
+                    <div class="img-container mb-3">
+                        <img id="img"
+                            src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=1000&q=80"
+                            alt="Section image" class="img-fluid rounded shadow" />
+                    </div>
+                    <p id="para">
+                        I'm a passionate web design student with a strong foundation in HTML, CSS, and JavaScript. I
+                        enjoy crafting clean, responsive, and user-friendly websites that blend creativity with
+                        functionality.
+                    </p>
+                </div>
+            </main>
+        </div>
+    </div>
+
+    <!-- JS -->
+    <script>
+        const list_items = document.querySelectorAll(".list-group-item");
+        const heading_text = document.getElementById("heading");
+        const para = document.getElementById("para");
+        const imgChange = document.getElementById("img");
+
+        const data = {
+            home: {
+                heading: "This is Home page",
+                img: "https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=1000&q=80",
+                para: "Welcome to my portfolio! I’m Kiran, a student of web design creating modern and responsive websites. My focus is on clean layouts, mobile-first design, and smooth user experiences. I have worked on several small projects where I experimented with animations, responsive navigation menus, and landing page designs. Through continuous practice, I strive to keep improving my skills. This page highlights my journey and passion for front-end development."
+            },
+            about: {
+                heading: "This is About page",
+                img: "newgirlllabout.jpg",
+                para: "About me: I'm Kiran, passionate about building web experiences that are functional and beautiful. I believe in the power of design to connect people and ideas, and I love translating concepts into real interactive projects. Apart from coding, I have a keen interest in UI/UX, typography, and color theory. My long-term goal is to become a full-stack developer and contribute to impactful projects. I enjoy teamwork, sharing knowledge, and exploring the latest web technologies."
+            },
+            mail: {
+                heading: "This is Mail page",
+                img: "https://images.unsplash.com/photo-1588702547919-26089e690ecc?auto=format&fit=crop&w=1000&q=80",
+                para: "You can contact me via email at kiran@example.com. I’d love to hear from you and discuss opportunities for collaboration. I am open to internships, freelance work, or even participating in group projects where I can contribute and learn. Communication is important to me, and I always try to reply promptly to messages. Feel free to reach out with project ideas, questions, or just to connect!"
+            },
+            contact: {
+                heading: "This is Contact page",
+                img: "https://images.unsplash.com/photo-1525182008055-f88b95ff7980?auto=format&fit=crop&w=1000&q=80",
+                para: "Feel free to reach out to me through LinkedIn, GitHub, or email for collaboration. I regularly update my GitHub with coding projects and practice exercises. On LinkedIn, I share my progress, learning journey, and sometimes short articles about design and technology. I believe networking with like-minded people helps us grow faster. Whether you want to build a project together or simply connect, I’d be glad to chat. Let’s create something innovative and meaningful!"
+            }
+        };
+
+        list_items.forEach(item => {
+            item.addEventListener("click", () => {
+                document.querySelector(".list-group-item.active").classList.remove("active");
+                item.classList.add("active");
+
+                const page = item.getAttribute("data-page");
+                heading_text.textContent = data[page].heading;
+                para.textContent = data[page].para;
+                imgChange.src = data[page].img;
+            });
+        });
+    </script>
+</body>
+
+</html>
